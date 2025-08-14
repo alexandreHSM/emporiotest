@@ -82,7 +82,7 @@ section {
 
 .hero {
     height: 100vh;
-    background: url("fotos/loja.jpeg") center/cover no-repeat;
+    background: url("loja.jpeg") center/cover no-repeat;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -329,3 +329,4 @@ section {
 .wishlist-btn:hover {
     background-color: #e9e9e9;
 }
+
