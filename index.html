@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empório Matriz</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="icon" type="image/png" href="fotos/LOGO's (VERSÕES)-06.png">
+</head>
+<body>
+    <header class="header">
+        <img src="fotos\LOGO's (VERSÕES)-05.png" class="logo" alt="logo emporio" />
+        <nav class="nav">
+            <a href="#inicio">Inicio</a>
+            <div class="dropdown">
+                <a href="#" id="menu-produtos">Produtos</a>
+                <div class="dropdown-content" id="submenu">
+                    <a href="#produtos">Grãos Selecionados</a>
+                    <a href="#tempero">Temperos Naturais</a>
+                </div>
+            </div>
+            <a href="https://www.instagram.com/p/DMgnCHItuql/"><i class="bi bi-instagram"></i></a>
+        </nav>
+    </header>
+
+    <script>
+        document.getElementById("menu-produtos").addEventListener("click", function(e) {
+            e.preventDefault();
+            document.getElementById("submenu").style.display = 
+                document.getElementById("submenu").style.display === "block" ? "none" : "block";
+        });
+        document.addEventListener("click", function(e) {
+            if (!e.target.closest(".dropdown")) {
+                document.getElementById("submenu").style.display = "none";
+            }
+        });
+    </script>
+
+    <section id="inicio" class="hero">
+        <div class="esquerda">
+            <h1>BEM-VINDOS À <br> EMPÓRIO MATRIZ</h1>
+            <p>Á sua melhor opção para comprar produtos naturais de qualidade.</p>
+            <div class="buttons">
+                <button class="btn btn-info">ℹ Mais Informações</button>
+            </div>            
+        </div>
+        <div class="direita">
+                <img src="fotos/LOGO's (VERSÕES)-02.png" alt="emporio logo">
+            </div>
+    </section>
+
+    <section id="produtos" class="produtos">
+        
+        <div class="container">
+        <h2 class="section-title">Grãos Selecionados</h2>
+        <div class="slider-container">
+            <button class="slider-arrow prev-arrow">&#10094</button> 
+            <div class="slider-track">
+                <div class="product-item">
+                    <div class="product-image" style="background-image: url('fotos/chia.jpg');">
+                        <span class="discount-tag">10% off</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-brand">Semente de chia</h3>
+                    </div>
+                    <p class="product-description">Rica em fibras, ômega-3, proteínas, cálcio e antioxidantes.</p>
+                    <div class="product-price">
+                        <span class="current-price">R$0,00 \ 100g</span>
+                        <span class="original-price">R$0,00 \ 100g</span>
+                    </div>
+                    <button class="wishlist-btn">Saiba mais</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image" style="background-image: url('fotos/linhaça\ dourada.png');">
+                        <span class="discount-tag">10% off</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-brand">Linhaça dourada</h3>
+                    </div>
+                    <p class="product-description">Rica em ômega-3, fibras, antioxidantes e vitaminas.</p>
+                    <div class="product-price">
+                        <span class="current-price">R$0,00 \ 100g</span>
+                        <span class="original-price">R$0,00 \ 100g</span>
+                    </div>
+                    <button class="wishlist-btn">Saiba mais</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image" style="background-image: url('fotos/gergelin.jpg');">
+                        <span class="discount-tag">10% off</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-brand">Gergelin</h3>
+                    </div>
+                    <p class="product-description">Rico em cálcio, ferro, magnésio fibras, proteínas e gorduras boas.</p>
+                    <div class="product-price">
+                        <span class="current-price">R$0,00 \ 100g</span>
+                        <span class="original-price">R$0,00 \ 100g</span>
+                    </div>
+                    <button class="wishlist-btn">Saiba mais</button>
+                </div>
+                <div class="product-item">
+                    <div class="product-image" style="background-image: url('fotos/graodebico.jpg');">
+                        <span class="discount-tag">10% off</span>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-brand">Grão de bico</h3>
+                    </div>
+                    <p class="product-description">Rico em proteínas, fibras, vitaminas e minerais.</p>
+                    <div class="product-price">
+                        <span class="current-price">R$0,00 \ 100g</span>
+                        <span class="original-price">R$0,00 \ 100g</span>
+                    </div>
+                    <button class="wishlist-btn">Saiba mais</button>
+                </div>
+            </div>
+            <button class="slider-arrow next-arrow">&#10095</button>
+        </div>      
+        <div class="slider-dots"></div>
+    </div>    
+     <script>
+     document.addEventListener('DOMContentLoaded', function(){
+        // Elementos do slider
+            const track = document.querySelector('.slider-track');
+            const items = document.querySelectorAll('.product-item');
+            const dotsContainer = document.querySelector('.slider-dots');
+            const prevButton = document.querySelector('.prev-arrow');
+            const nextButton = document.querySelector('.next-arrow');
+
+            // Configuração
+            const itemWidth = items[0].offsetWidth;
+            const slidesToShow = Math.floor(track.offsetWidth / itemWidth);
+            const totalItems = items.length;
+
+            let currentIndex = 0;
+            let autoScrollInterval;
+
+            // Definir largura inicial do track e itens
+            track.style.width = `${itemWidth * totalItems}px`;  
+
+            // Criar pontos para navegação
+            for (let i = 0; i < totalItems - slidesToShow + 1; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => {
+                    goToSlide(i);
+                    resetAutoScroll();
+                });
+                dotsContainer.appendChild(dot);
+            }
+
+            // Funções de navegação
+            function updateDots() {
+                const dots = document.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            function goToSlide(index) {
+                if (index < 0) {
+                    index = totalItems - slidesToShow;
+                } else if (index > totalItems - slidesToShow) {
+                    index = 0;
+                }
+                
+                currentIndex = index;
+                track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+                updateDots();
+            }
+
+                // Handlers dos botões de navegação
+                prevButton.addEventListener('click', () => {
+                    goToSlide(currentIndex - 1);
+                    resetAutoScroll();
+                });
+
+                nextButton.addEventListener('click', () => {
+                    goToSlide(currentIndex + 1);
+                    resetAutoScroll();
+                });
+
+                // Funcionalidade de auto-scroll
+                function startAutoScroll() {
+                    autoScrollInterval = setInterval(() => {
+                        goToSlide(currentIndex + 1);
+                    }, 5000); // Rola a cada 3 segundos
+                }
+
+                function resetAutoScroll() {
+                    clearInterval(autoScrollInterval);
+                    startAutoScroll();
+                }
+
+                // Iniciar auto-scroll
+                startAutoScroll();
+
+                window.addEventListener('resize', () => {
+                const newItemWidth = items[0].offsetWidth;
+                const newSlidesToShow = Math.floor(track.offsetWidth / newItemWidth);
+                
+                // Atualizar largura do track
+                track.style.width = `${newItemWidth * totalItems}px`;
+                
+                // Ajustar posição atual
+                goToSlide(currentIndex);
+});
+
+
+     })
+    </script>
+    </section>
+
+    <section id="tempero" class="temperos">
+        <div class="container">
+            <h2 class="section-title"> Temperos naturais</h2>
+            <div class="tempero-container">
+                <button class="slider-arrow prev-tempero">&#10094</button>
+                <div class="tempero-track">
+                    <div class="product-tempero">
+                        <div class="tempero-image" style="background-image: url(fotos/temperos/amaciantedecarne.jpeg);">
+                        </div>
+                        <div class="tempero-info">
+                            <h3 class="product-brand">Amaciante de carne</h3>
+                        </div>
+                        <div class="product-prie">
+                            <span class="current-price">R$ 8,99 / 100g</span>
+                        </div> 
+                        <button class="wishlist-btn">Saiba mais</button>                       
+                    </div>    
+                    <div class="product-tempero">
+                        <div class="tempero-image" style="background-image: url(fotos/temperos/anamaria.jpeg);">
+                        </div>
+                        <div class="tempero-info">
+                            <h3 class="product-brand">Ana Maria</h3>
+                        </div>
+                        <div class="product-prie">
+                            <span class="current-price">R$ 4,50 / 100g</span>
+                        </div> 
+                        <button class="wishlist-btn">Saiba mais</button>                       
+                    </div>    
+                    <div class="product-tempero">
+                        <div class="tempero-image" style="background-image: url(fotos/temperos/caldodecarne.jpeg);">
+                        </div>
+                        <div class="tempero-info">
+                            <h3 class="product-brand">Caldo de carne</h3>
+                        </div>
+                        <div class="product-prie">
+                            <span class="current-price">R$ 2,00 / 100g</span>
+                        </div> 
+                        <button class="wishlist-btn">Saiba mais</button>                       
+                    </div>   
+                    <div class="product-tempero">
+                        <div class="tempero-image" style="background-image: url(fotos/temperos/coentro.jpeg);">
+                        </div>
+                        <div class="tempero-info">
+                            <h3 class="product-brand">Coentro moído</h3>
+                        </div>
+                        <div class="product-prie">
+                            <span class="current-price">R$ 2,00 / 100g</span>
+                        </div> 
+                        <button class="wishlist-btn">Saiba mais</button>                       
+                    </div> 
+                    <div class="product-tempero">
+                        <div class="tempero-image" style="background-image: url(fotos/temperos/colorau.jpeg);">
+                        </div>
+                        <div class="tempero-info">
+                            <h3 class="product-brand">Colorau</h3>
+                        </div>
+                        <div class="product-prie">
+                            <span class="current-price">R$ 2,00 / 100g</span>
+                        </div> 
+                        <button class="wishlist-btn">Saiba mais</button>                       
+                    </div>
+                                
+                </div>
+                <button class="slider-arrow next-tempero">&#10095</button>
+            </div>     
+            <div class="tempero-dots"></div>       
+        </div>  
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                const temperoSection = document.querySelector('.temperos');
+
+                // Seleciona apenas dentro da seção de temperos
+                const track = temperoSection.querySelector('.tempero-track');
+                const items = temperoSection.querySelectorAll('.product-tempero');
+                const dotsContainer = temperoSection.querySelector('.tempero-dots');
+                const prevButton = temperoSection.querySelector('.prev-tempero');
+                const nextButton = temperoSection.querySelector('.next-tempero');
+
+                const itemWidth = items[0].offsetWidth;
+                const slidesToShow = Math.floor(track.offsetWidth / itemWidth);
+                const totalItems = items.length;
+
+                let currentIndex = 0;
+                let autoScrollInterval;
+
+                // Define a largura total do track
+                track.style.width = `${itemWidth * totalItems}px`;
+
+                // Cria pontos de navegação
+                for (let i = 0; i < totalItems - slidesToShow + 1; i++) {
+                    const dot = document.createElement('div');
+                    dot.classList.add('dot');
+                    if (i === 0) dot.classList.add('active');
+                    dot.addEventListener('click', () => {
+                        goToSlide(i);
+                        resetAutoScroll();
+                    });
+                    dotsContainer.appendChild(dot);
+                }
+
+                function updateDots() {
+                    const dots = dotsContainer.querySelectorAll('.dot');
+                    dots.forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentIndex);
+                    });
+                }
+
+                function goToSlide(index) {
+                    if (index < 0) {
+                        index = totalItems - slidesToShow;
+                    } else if (index > totalItems - slidesToShow) {
+                        index = 0;
+                    }
+                    currentIndex = index;
+                    track.style.transform = `translateX(-${itemWidth * currentIndex}px)`;
+                    updateDots();
+                }
+
+                prevButton.addEventListener('click', () => {
+                    goToSlide(currentIndex - 1);
+                    resetAutoScroll();
+                });
+
+                nextButton.addEventListener('click', () => {
+                    goToSlide(currentIndex + 1);
+                    resetAutoScroll();
+                });
+
+                function startAutoScroll() {
+                    autoScrollInterval = setInterval(() => {
+                        goToSlide(currentIndex + 1);
+                    }, 5000);
+                }
+
+                function resetAutoScroll() {
+                    clearInterval(autoScrollInterval);
+                    startAutoScroll();
+                }
+
+                startAutoScroll();
+
+                window.addEventListener('resize', () => {
+                    const newItemWidth = items[0].offsetWidth;
+                    track.style.width = `${newItemWidth * totalItems}px`;
+                    goToSlide(currentIndex);
+                });
+            });
+            </script>
+   
+    </section>
+</body>
+</html>
